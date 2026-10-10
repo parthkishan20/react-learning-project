@@ -34,4 +34,4 @@ npm run deploy                         # build + publish /build to GitHub Pages 
 ## Assets and deployment
 
 - Images and videos exist in both `public/` and `src/assets/`. Code imports from `src/assets/` (bundled by webpack, works under any base path); the `public/` copies are effectively unused.
-- `package.json` sets `homepage` to `https://parthkishan20.github.io/trvl`, so the app is served from the `/trvl` subpath both on GitHub Pages and in the dev server (`http://localhost:3000/trvl`). `BrowserRouter` has no `basename`, so routes like `/` won't match at `/trvl` unless `basename={process.env.PUBLIC_URL}` is added (or `HashRouter` is used). Deep-link reloads will also 404 on GitHub Pages.
+- `package.json` sets `homepage` to `https://parthkishan20.github.io/trvl`, so the app is served from the `/trvl` subpath both on GitHub Pages and in the dev server (`http://localhost:3000/trvl`). `BrowserRouter` uses `basename={process.env.PUBLIC_URL}` so routes resolve under that subpath. Deep-link reloads (e.g. `/trvl/services`) still 404 on GitHub Pages, since it has no SPA fallback.
